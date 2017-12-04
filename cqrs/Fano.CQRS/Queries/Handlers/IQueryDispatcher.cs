@@ -7,6 +7,6 @@
     /// </summary>
     public interface IQueryDispatcher
     {
-        Task<TResult> Dispatch<TResult>(IQuery<TResult> query) where TResult : class;
+        Task<TResult> DispatchAsync<TResult>(IQuery<TResult> query) where TResult : class;
     }
 }
