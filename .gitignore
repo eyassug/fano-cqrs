@@ -1,2 +1,4 @@
 cqrs/*/obj/*
 cqrs/*/bin/*
+source/*/obj/*
+source/*/bin/*
