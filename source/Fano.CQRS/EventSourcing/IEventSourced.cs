@@ -6,7 +6,7 @@
     /// <summary>
     /// Represents an identifiable entity that is event sourced.
     /// </summary>
-    public interface IEventSourced
+    public interface IEventSourced : IAggregateRoot<Guid>
     {
         /// <summary>
         /// Gets the entity identifier.
