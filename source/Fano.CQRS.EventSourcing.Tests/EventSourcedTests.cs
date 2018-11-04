@@ -1,5 +1,6 @@
 namespace Fano.CQRS.EventSourcing.Tests
 {
+    using System;
     using System.Linq;
     using System.Collections.Generic;
     using Xunit;
