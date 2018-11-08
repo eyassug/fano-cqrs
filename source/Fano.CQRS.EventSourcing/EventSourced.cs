@@ -11,20 +11,20 @@
     /// <see cref="IEventSourced"/> entities do not require the use of <see cref="EventSourced"/>, but this class contains some common 
     /// useful functionality related to versions and rehydration from past events.
     /// </remarks>
-    public abstract class EventSourced : IEventSourced
+    public abstract class EventSourced<TKey> : IEventSourced<TKey>
     {
         private readonly Dictionary<Type, Action<IVersionedEvent>> handlers = new Dictionary<Type, Action<IVersionedEvent>>();
         private readonly List<IVersionedEvent> pendingEvents = new List<IVersionedEvent>();
 
-        private readonly Guid id;
+        private readonly TKey id;
         private int version = -1;
 
-        protected EventSourced(Guid id)
+        protected EventSourced(TKey id)
         {
             this.id = id;
         }
 
-        public Guid Id
+        public TKey Id
         {
             get { return this.id; }
         }
@@ -66,7 +66,7 @@
 
         protected void Update(VersionedEvent e)
         {
-            e.SourceId = this.Id;
+            e.SourceId = this.Id.ToString();
             e.Version = this.version + 1;
             this.handlers[e.GetType()].Invoke(e);
             this.version = e.Version;

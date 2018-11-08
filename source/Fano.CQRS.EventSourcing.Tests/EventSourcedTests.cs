@@ -6,7 +6,7 @@ namespace Fano.CQRS.EventSourcing.Tests
     using Xunit;
 
 
-    class Order : EventSourced
+    class Order : EventSourced<Guid>
     {
         protected Order(Guid id) : base(id)
         {
@@ -68,7 +68,7 @@ namespace Fano.CQRS.EventSourcing.Tests
             var newEvent = order.Events.SingleOrDefault();
             Assert.Equal(typeof(OrderCreated), newEvent.GetType());
             Assert.Equal(0, order.Version);
-            Assert.Equal(order.Id, newEvent.SourceId);
+            Assert.Equal(order.Id.ToString(), newEvent.SourceId);
         }
     }
 }

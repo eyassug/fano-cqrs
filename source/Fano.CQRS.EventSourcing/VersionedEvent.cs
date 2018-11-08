@@ -4,7 +4,7 @@ namespace Fano.CQRS.EventSourcing
 
     public abstract class VersionedEvent : IVersionedEvent
     {
-        public Guid SourceId { get; set; }
+        public string SourceId { get; set; }
 
         public int Version { get; set; }
     }
