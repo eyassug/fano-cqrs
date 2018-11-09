@@ -22,6 +22,7 @@
         protected EventSourced(TKey id)
         {
             this.id = id;
+            Handles<UnknownEvent>(this.On);
         }
 
         public TKey Id
@@ -71,6 +72,11 @@
             this.handlers[e.GetType()].Invoke(e);
             this.version = e.Version;
             this.pendingEvents.Add(e);
+        }
+
+        protected void On(UnknownEvent @event)
+        {
+            // Do Nothing
         }
     }
 }
