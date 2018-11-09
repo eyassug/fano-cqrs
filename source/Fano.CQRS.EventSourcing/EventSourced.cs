@@ -61,6 +61,8 @@
             foreach (var e in pastEvents)
             {
                 this.handlers[e.GetType()].Invoke(e);
+                // UnkownEvent should not alter Aggregate version
+                if(e is UnknownEvent) continue;
                 this.version = e.Version;
             }
         }
