@@ -4,33 +4,33 @@
 
     public class EntityNotFoundException : Exception
     {
-        private readonly Guid entityId;
+        private readonly object entityId;
         private readonly string entityType;
 
         public EntityNotFoundException()
         {
         }
 
-        public EntityNotFoundException(Guid entityId) : base(entityId.ToString())
+        public EntityNotFoundException(object entityId) : base(entityId.ToString())
         {
             this.entityId = entityId;
         }
 
-        public EntityNotFoundException(Guid entityId, string entityType)
+        public EntityNotFoundException(object entityId, string entityType)
             : base(entityType + ": " + entityId.ToString())
         {
             this.entityId = entityId;
             this.entityType = entityType;
         }
 
-        public EntityNotFoundException(Guid entityId, string entityType, string message, Exception inner) 
+        public EntityNotFoundException(object entityId, string entityType, string message, Exception inner) 
             : base(message, inner)
         {
             this.entityId = entityId;
             this.entityType = entityType;
         }
 
-        public Guid EntityId
+        public object EntityId
         {
             get { return this.entityId; }
         }
